@@ -1,3 +1,4 @@
 fn main() {
-    println!("Hello, world!");
+    println!("Welcome to DIMM: Decentralized-Integrated Mobile Microfinance Protocol");
 }
+
