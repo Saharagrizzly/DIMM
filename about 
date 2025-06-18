@@ -1,0 +1,69 @@
+dimm-mvp/
+│
+├── README.md                     Overview, setup instructions, stack rationale
+├── .env.example                 
+ Template for environment variables (API keys, DB, MPESA)
+├── docker-compose.yml          # Optional: local dev orchestration (Postgres, backend, etc.)
+│
+├── frontend/                    # React frontend (user + admin + SACCO views)
+│   ├── public/                  # Static files (favicon, logo)
+│   ├── src/
+│   │   ├── assets/              # Logos, icons, design assets
+│   │   ├── components/          # Reusable UI components
+│   │   ├── pages/               # Routes (Dashboard, Onboarding, Admin)
+│   │   ├── views/               # Views: UserDashboard, SACCODashboard, AdminPanel
+│   │   ├── contexts/            # Auth context, wallet context
+│   │   ├── services/            # API calls to backend
+│   │   ├── utils/               # Helper functions (KES ↔ Token, formatting)
+│   │   ├── hooks/               # Custom React hooks (e.g. useWallet, useNFTs)
+│   │   ├── config/              # API base URL, token constants
+│   │   └── App.tsx
+│   └── tailwind.config.js
+│
+├── backend/                     # Node.js or FastAPI backend
+│   ├── src/
+│   │   ├── controllers/         # Route logic (wallet, nft, auth, sacco)
+│   │   ├── routes/              # API route declarations
+│   │   ├── services/            # Business logic (token ops, mpesa, kyc)
+│   │   ├── solana/              # Solana SDK wrapper + SPL token interactions
+│   │   ├── nft/                 # Metaplex minting scripts (compressed NFTs)
+│   │   ├── middleware/          # JWT auth, error handling
+│   │   ├── models/              # DB models (User, SACCO, NFT, Wallet)
+│   │   ├── utils/               # Helpers (double entry logic, logs)
+│   │   └── index.ts             # Server entry point
+│   ├── .env
+│   └── package.json
+│
+├── contracts/                   # Solana smart contracts (Anchor)
+│   ├── programs/
+│   │   └── dimm_wallet/
+│   │       ├── src/lib.rs       # Rust contract: token wallet ops
+│   ├── tests/                   # Integration tests
+│   ├── Anchor.toml
+│   └── Cargo.toml
+│
+├── database/
+│   ├── schema.sql               # SQL schema (for Postgres/Supabase)
+│   ├── seed.sql                 # Dummy users, SACCOs, NFTs
+│   └── migrations/
+│
+├── scripts/                     # CLI tools or setup scripts
+│   ├── mint_test_nfts.js        # For testing NFT invoice mints
+│   └── generate_wallets.ts
+│
+├── infra/                       # Infrastructure & deployment
+│   ├── vercel/                  # Frontend deployment config
+│   ├── firebase/                # Auth + storage rules if Firebase used
+│   ├── supabase/                # DB setup scripts or dump
+│   ├── docker/                  # Dockerfiles per service
+│   └── railway/                 # Deployment settings for backend/postgres
+│
+├── docs/                        # Project documentation
+│   ├── api-spec.md              # API contract for frontend/backend
+│   ├── nft-metadata-format.md  # NFT metadata standards
+│   ├── flows/
+│   │   ├── user-flow.png        # User journey diagram (Mama Mboga, etc.)
+│   │   └── wallet-flow.md
+│   └── compliance/
+│       ├── kyc.md               # MetaMap integration guide
+│       └── sandbox-plan.md     # Regulatory sandbox notes (CBK/SASRA)
